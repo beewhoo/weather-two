@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 // ES Modules syntax
 
 
@@ -22,8 +23,11 @@ class Form extends Component {
 
   }
 
+
+
   handleChange(event) {
     this.setState({city: event.target.value});
+    
   }
 
   handleSubmit(event) {
@@ -68,7 +72,7 @@ class Form extends Component {
          day2:json.list[1],
          day3:json.list[2],
          day4:json.list[3],
-         day:json.list[4],
+         day5:json.list[4],
 
 
         })
@@ -98,20 +102,12 @@ class Form extends Component {
 
         <p><input className='button' type="submit" value="Search" /></p>
 
-
-       <p>{this.state.day1.deg}</p>
-       <p>{this.state.background}</p>
-
           <div className='forecast'>
 
-          <p>{}</p>
+
 
 
           </div>
-
-
-
-
 
 
 
