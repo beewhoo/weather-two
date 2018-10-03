@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-
-
+// ES Modules syntax
 
 
 class Form extends Component {
@@ -15,7 +14,8 @@ class Form extends Component {
       day2: '',
       day3: '',
       day4: '',
-      day5:''
+      day5:'',
+      background: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,13 +34,33 @@ class Form extends Component {
 
 
 
+       fetch('https://api.unsplash.com/search/photos/?page=1&per_page=1&query=' + this.state.city +  '&client_id=f51fe03c0dc250913e99d4ad4fd0d084874cc60649e52e653842f84231217146')
+         .then(function(response) {
+           return response.json()
+         }).then(function(json) {
+
+
+           // update state
+           base.setState({
+             background: json.results[0].urls.full
+
+
+
+            })
+         }).catch(function(ex) {
+           console.log('Parsing JSON failed', ex)
+           alert('Background Image not found')
+         })
+
+
+
 
    fetch('https://api.openweathermap.org/data/2.5/forecast/daily?q=' + this.state.city + '&cnt=5&units=metric&appid=052f26926ae9784c2d677ca7bc5dec98')
      .then(function(response) {
        return response.json()
      }).then(function(json) {
 
-       console.log(json.list[0])
+
 
        // update state
        base.setState({
@@ -79,7 +99,8 @@ class Form extends Component {
         <p><input className='button' type="submit" value="Search" /></p>
 
 
- <p>{this.state.day1.deg}</p>
+       <p>{this.state.day1.deg}</p>
+       <p>{this.state.background}</p>
 
           <div className='forecast'>
 
